@@ -95,11 +95,22 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if len(args) == 0:
             print("** class name missing **")
-        if len(args) == 1:
-            print("** instance id missing **")
-        else:
-            if args[0] != "BaseModel":
+        elif (HBNBCommand.check_class(args[0])):
+            if not issubclass(eval(args[0]), BaseModel):
                 print("** class doesn't exist **")
+            else:
+                if len(args) == 1:
+                    print("** instance id missing **")
+                else:
+                    key = args[0] + "." + args[1]
+                    objs = storage.all()
+                    if key in objs:
+                        del objs[key]
+                        storage.save()
+                    else:
+                        print("** no instance found **")
+        else:
+            print("** class doesn't exist **")
 
     def do_all(self, line):
         """
@@ -107,7 +118,23 @@ class HBNBCommand(cmd.Cmd):
         the class name.
         Usage: all <class Name> or all
         """
-        pass
+        args = line.split()
+        objs = []
+        if len(args) == 0:
+            for k, v in storage.all().items():
+                objs.append(str(v))
+            print(objs)
+        elif (HBNBCommand.check_class(args[0])):
+            if not issubclass(eval(args[0]), BaseModel):
+                print("** class doesn't exist **")
+            else:
+                for k, v in storage.all().items():
+                    obj_keys = k.split('.')
+                    if obj_keys[0] == args[0]:
+                        objs.append(str(v))
+                print(objs)
+        else:
+            print("** class doesn't exist **")
 
     def do_update(self, class_name, class_id, attribute_name, attribute_value):
         """
