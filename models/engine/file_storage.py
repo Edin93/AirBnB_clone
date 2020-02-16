@@ -16,12 +16,17 @@ class FileStorage():
     _file_path = "file.json"
     _objects = {}
 
+    def del_key(self, key):
+        """
+        delete a key from _objects
+        """
+        del self._objects[key]
+
     def all(self):
         """
         Returns the dictionary _objects
         """
         return self._objects
-
 
     def new(self, obj):
         """
@@ -35,15 +40,8 @@ class FileStorage():
         """
         serializes _objects to the JSON file
         """
-        try:
-            with open(FileStorage._file_path, mode='r', encoding='UTF-8') as f:
-                r = f.read()
-                my_obj = json.loads(r)
-        except:
-            with open(self._file_path, mode='w', encoding='UTF-8') as f:
-                f.write('')
-                my_obj = {}
         with open(self._file_path, mode='w', encoding='UTF-8') as f:
+            my_obj = {}
             for k, v in FileStorage._objects.items():
                 my_obj[k] = v.to_dict()
             my_str = json.dumps(my_obj)
@@ -62,3 +60,4 @@ class FileStorage():
                     self.new(my_obj)
         except:
             pass
+

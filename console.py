@@ -103,9 +103,8 @@ class HBNBCommand(cmd.Cmd):
                     print("** instance id missing **")
                 else:
                     key = args[0] + "." + args[1]
-                    objs = storage.all()
-                    if key in objs:
-                        del objs[key]
+                    if key in storage.all():
+                        storage.del_key(key)
                         storage.save()
                     else:
                         print("** no instance found **")
