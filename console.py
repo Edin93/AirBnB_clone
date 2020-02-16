@@ -18,6 +18,7 @@ class HBNBCommand(cmd.Cmd):
         """
         End-of-file marker
         """
+        print("")
         return True
     
     def do_quit(self, line):
@@ -53,27 +54,19 @@ class HBNBCommand(cmd.Cmd):
         """
         if len(line) == 0:
             print("** class name missing **")
+        elif " " not in line:
+            print("** instance id missing **")
         else:
-            cla = ""
-            cla_id = ""
-            try:
-                cla = line.split() 
-                cla_id = line.split()
-            except:
-                if (len(cla) == 0):
-                    print("** class name missing **")
-                elif (len(cla_id) == 0):
-                    print("** instance id missing **")
+            cla, cla_id = line.split() 
+            if cla != "BaseModel":
+                print("** class doesn't exist **")
             else:
-                if cla != "BaseModel":
-                    print("** class doesn't exist **")
+                key = cla + "." + cla_id
+                obj = storage.all()
+                if key in obj:
+                    print(obj[key])
                 else:
-                    key = cla + "." + cla_id
-                    obj = storage.all()
-                    if key in obj:
-                        print(obj[key])
-                    else:
-                        print("** no instance found **")
+                    print("** no instance found **")
 
 
     def do_destroy(self, line):
@@ -99,4 +92,11 @@ class HBNBCommand(cmd.Cmd):
       
 
 if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+    import sys
+    CtrlC = False
+    while CtrlC != True:
+        try:
+            HBNBCommand().cmdloop()
+            CtrlC = True
+        except KeyboardInterrupt:
+            sys.stdout.write('\n')
