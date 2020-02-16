@@ -3,9 +3,11 @@
 Module that contains the entry point of the command interpreter
 """
 import cmd
+import inspect
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -13,6 +15,15 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = '(hbnb) '
+
+    @staticmethod
+    def check_class(x):
+        """Check if x is a class."""
+        try:
+            r = inspect.isclass(eval(x))
+            return r
+        except:
+            return False
 
     def do_EOF(self, line):
         """
@@ -38,14 +49,18 @@ class HBNBCommand(cmd.Cmd):
         Create an instance of BaseModel
         Usage: create <class Name>
         """
-        if len(line) == 0:
+        args = line.split()
+        if len(args) == 0:
             print("** class name missing **")
-        elif line != "BaseModel":
-            print("** class doesn't exist **")
+        elif (HBNBCommand.check_class(args[0])):
+            if not issubclass(eval(args[0]), BaseModel):
+                print("** class doesn't exist **")
+            else:
+                my_class = BaseModel()
+                my_class.save()
+                print("{}".format(my_class.id))
         else:
-            my_class = BaseModel()
-            my_class.save()
-            print("{}".format(my_class.id))
+            print("** class doesn't exist **")
 
     def do_show(self, line):
         """
@@ -56,26 +71,35 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if len(args) == 0:
             print("** class name missing **")
-        elif len(args) == 1:
-            print("** instance id missing **")
-        else:
-            if args[0] != "BaseModel":
+        elif (HBNBCommand.check_class(args[0])):
+            if not issubclass(eval(args[0]), BaseModel):
                 print("** class doesn't exist **")
             else:
-                key = args[0] + "." + args[1]
-                obj = storage.all()
-                if key in obj:
-                    print(obj[key])
+                if len(args) == 1:
+                    print("** instance id missing **")
                 else:
-                    print("** no instance found **")
-
+                    key = args[0] + "." + args[1]
+                    objs = storage.all()
+                    if key in objs:
+                        print(objs[key])
+                    else:
+                        print("** no instance found **")
+        else:
+            print("** class doesn't exist **")
 
     def do_destroy(self, line):
         """
         Deletes an instance based on the class name and id
         Usage: Destroy <class Name> <id>
         """
-        pass
+        args = line.split()
+        if len(args) == 0:
+            print("** class name missing **")
+        if len(args) == 1:
+            print("** instance id missing **")
+        else:
+            if args[0] != "BaseModel":
+                print("** class doesn't exist **")
 
     def do_all(self, line):
         """
@@ -96,8 +120,9 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     import sys
+
     CtrlC = False
-    while CtrlC != True:
+    while CtrlC is not True:
         try:
             HBNBCommand().cmdloop()
             CtrlC = True
