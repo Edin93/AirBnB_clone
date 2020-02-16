@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-serializes/deserializes Json
+serializes/deserializes JSON
 """
 import json
 import sys
@@ -21,6 +21,16 @@ class FileStorage():
         delete a key from _objects
         """
         del self._objects[key]
+
+    def update_obj(self, id, key, value):
+        """
+        updates/add an object in _objects.
+        """
+        #print('type id = ' + str(type(id)) + ' | type key ' + str(type(key)) + ' | type value = ' + str(type(value)))
+        #print('id = ' + id)
+        #print('key = ' + key)
+        #print('value = ' + value)
+        setattr(self._objects[id], str(key), str(value))
 
     def all(self):
         """
@@ -60,4 +70,3 @@ class FileStorage():
                     self.new(my_obj)
         except:
             pass
-
