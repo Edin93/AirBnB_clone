@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
         """
         print("")
         return True
-    
+
     def do_quit(self, line):
         """
         Quit the command line
@@ -36,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """
         Create an instance of BaseModel
-        Usage: show <class Name>
+        Usage: create <class Name>
         """
         if len(line) == 0:
             print("** class name missing **")
@@ -46,22 +46,23 @@ class HBNBCommand(cmd.Cmd):
             my_class = BaseModel()
             my_class.save()
             print("{}".format(my_class.id))
-    
+
     def do_show(self, line):
         """
-        Prints the string representation of an instance based on the class name and id.
+        Prints the string representation of an instance based on the class name
+        and id.
         Usage: show <class Name> <id>
         """
-        if len(line) == 0:
+        args = line.split()
+        if len(args) == 0:
             print("** class name missing **")
-        elif " " not in line:
+        elif len(args) == 1:
             print("** instance id missing **")
         else:
-            cla, cla_id = line.split() 
-            if cla != "BaseModel":
+            if args[0] != "BaseModel":
                 print("** class doesn't exist **")
             else:
-                key = cla + "." + cla_id
+                key = args[0] + "." + args[1]
                 obj = storage.all()
                 if key in obj:
                     print(obj[key])
@@ -78,18 +79,20 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """
-        Prints all string representation of all instances based or not on the class name.
-        Usage: all <class Name> or all 
+        Prints all string representation of all instances based or not on
+        the class name.
+        Usage: all <class Name> or all
         """
         pass
 
     def do_update(self, class_name, class_id, attribute_name, attribute_value):
         """
-        Updates an instance based on the class name and id by adding or updating attribute.
+        Updates an instance based on the class name and id by adding
+        or updating attribute.
         Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
         pass
-      
+
 
 if __name__ == '__main__':
     import sys
