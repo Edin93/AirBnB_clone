@@ -43,7 +43,7 @@ class BaseModel():
     def __str__(self):
         """Prints [<class name>] (<self.id>) <self.__dict__>"""
         msg = "[" + str(self.__class__.__name__) + "] "
-        msg += "(" + str(self.id) + ") "
+        msg += "(" + str(self.id) + ")"
         msg += str(self.__dict__)
         return msg
 

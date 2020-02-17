@@ -7,7 +7,7 @@ import inspect
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models import storage
-
+from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -56,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
             if not issubclass(eval(args[0]), BaseModel):
                 print("** class doesn't exist **")
             else:
-                my_class = BaseModel()
+                my_class = eval(args[0])()
                 my_class.save()
                 print("{}".format(my_class.id))
         else:

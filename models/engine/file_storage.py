@@ -66,8 +66,9 @@ class FileStorage():
             with open(FileStorage._file_path, mode='r') as f:
                 from models.base_model import BaseModel
                 r = json.load(f)
-                for v in r.values():
-                    my_obj = BaseModel(**v)
+                for k, v in r.values():
+                    cls_name = k.split('.')[0]
+                    my_obj = eval(cls_name)(**v)
                     self.new(my_obj)
         except:
             pass
