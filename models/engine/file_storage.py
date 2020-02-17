@@ -26,11 +26,12 @@ class FileStorage():
         """
         updates/add an object in _objects.
         """
-        #print('type id = ' + str(type(id)) + ' | type key ' + str(type(key)) + ' | type value = ' + str(type(value)))
-        #print('id = ' + id)
-        #print('key = ' + key)
-        #print('value = ' + value)
-        setattr(self._objects[id], str(key), str(value))
+        string = value
+        if string.startswith('"') or string.startswith("'"):
+            string = string[1:]
+        if string.endswith('"') or string.endswith("'"):
+            string = string[:-1]
+        setattr(self._objects[id], str(key), str(string))
 
     def all(self):
         """
