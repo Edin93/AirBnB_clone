@@ -171,14 +171,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-
 if __name__ == '__main__':
     import sys
-
-    CtrlC = False
-    while CtrlC is not True:
-        try:
-            HBNBCommand().cmdloop()
-            CtrlC = True
-        except KeyboardInterrupt:
-            sys.stdout.write('\n')
+    if sys.stdin.isatty():
+        HBNBCommand().cmdloop()
+    else:
+        HBNBCommand.doc_header = "\nDocumented commands (type help <topic>):"
+        HBNBCommand().cmdloop()
