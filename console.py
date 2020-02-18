@@ -169,19 +169,22 @@ class HBNBCommand(cmd.Cmd):
                             if len(line2) == 1:
                                 print("** value missing **")
                             else:
-                                setattr(objects[key], str(args[2]), str(line2[1]))
+                                setattr(
+                                        objects[key],
+                                        str(args[2]),
+                                        str(line2[1])
+                                        )
                                 storage.save()
                     else:
                         print("** no instance found **")
         else:
             print("** class doesn't exist **")
-
+    """
     def default(self, line):
-        """
         Called on an input line when the command prefix is not recognized.
         the commands that are handled here are:
         <class name>.all()
-        """
+
         args = line.split('.')
         cls_name = ""
         objs = []
@@ -202,11 +205,9 @@ class HBNBCommand(cmd.Cmd):
                             print(']')
                 else:
                     print('[]')
-
+    """
 if __name__ == '__main__':
     import sys
-    if sys.stdin.isatty():
-        HBNBCommand().cmdloop()
-    else:
+    if not sys.stdin.isatty():
         HBNBCommand.doc_header = "\nDocumented commands (type help <topic>):"
-        HBNBCommand().cmdloop()
+HBNBCommand().cmdloop()
