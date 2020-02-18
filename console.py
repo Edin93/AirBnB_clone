@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split()
         if len(args) == 0:
-            print("** class name missing **")
+            print(" ** class name missing ** ")
         elif (HBNBCommand.check_class(args[0])):
             if not issubclass(eval(args[0]), BaseModel):
                 print("** class doesn't exist **")
