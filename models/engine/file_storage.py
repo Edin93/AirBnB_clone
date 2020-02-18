@@ -10,34 +10,34 @@ class FileStorage():
     """
     Serializes instances to a JSON file and deserializes JSON file to instances
     Attributes:
-    _file_path: Path to JSON file
-    _objects: Dictionary storing all objects
+    __file_path: Path to JSON file
+    __objects: Dictionary storing all objects
     """
-    _file_path = "file.json"
-    _objects = {}
+    __file_path = "file.json"
+    __objects = {}
 
     def del_key(self, key):
         """
-        delete a key from _objects
+        delete a key from __objects
         """
-        del self._objects[key]
+        del self.__objects[key]
 
     def update_obj(self, id, key, value):
         """
-        updates/add an object in _objects.
+        updates/add an object in __objects.
         """
         string = value
         if string.startswith('"') or string.startswith("'"):
             string = string[1:]
         if string.endswith('"') or string.endswith("'"):
             string = string[:-1]
-        setattr(self._objects[id], str(key), str(string))
+        setattr(self.__objects[id], str(key), str(string))
 
     def all(self):
         """
-        Returns the dictionary _objects
+        Returns the dictionary __objects
         """
-        return self._objects
+        return self.__objects
 
     def new(self, obj):
         """
@@ -45,15 +45,15 @@ class FileStorage():
         <obj class name>.id
         """
         key = obj.__class__.__name__ + "." + getattr(obj, "id")
-        self._objects[key] = obj
+        self.__objects[key] = obj
 
     def save(self):
         """
         serializes _objects to the JSON file
         """
-        with open(self._file_path, mode='w', encoding='UTF-8') as f:
+        with open(self.__file_path, mode='w', encoding='UTF-8') as f:
             my_obj = {}
-            for k, v in FileStorage._objects.items():
+            for k, v in FileStorage.__objects.items():
                 my_obj[k] = v.to_dict()
             my_str = json.dumps(my_obj)
             f.write(my_str)
@@ -63,7 +63,7 @@ class FileStorage():
         deserializes the JSON file to __objects
         """
         try:
-            with open(FileStorage._file_path, mode='r') as f:
+            with open(FileStorage.__file_path, mode='r') as f:
                 from models.base_model import BaseModel
                 from models.amenity import Amenity
                 from models.base_model import BaseModel
