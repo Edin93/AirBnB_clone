@@ -110,8 +110,9 @@ class HBNBCommand(cmd.Cmd):
                     print("** instance id missing **")
                 else:
                     key = args[0] + "." + args[1]
-                    if key in storage.all():
-                        storage.del_key(key)
+                    objects = storage.all()
+                    if key in objects:
+                        del objects[key]
                         storage.save()
                     else:
                         print("** no instance found **")
@@ -159,13 +160,19 @@ class HBNBCommand(cmd.Cmd):
                     print("** instance id missing **")
                 else:
                     key = args[0] + "." + args[1]
-                    if key in storage.all():
+                    objects = storage.all()
+                    if key in objects:
                         if len(args) == 2:
                             print('** attribute name missing **')
                         elif len(args) == 3:
                             print('** value missing **')
                         else:
-                            storage.update_obj(key, args[2], args[3])
+                            s = args[3]
+                            if s.startswith('"') or s.startswith("'"):
+                                s = s[1:]
+                            if s.endswith('"') or s.endswith("'"):
+                                s = s[:-1]
+                            setattr(objects[key], str(args[2]), str(s))
                             storage.save()
                     else:
                         print("** no instance found **")

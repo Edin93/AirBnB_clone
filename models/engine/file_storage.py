@@ -16,23 +16,6 @@ class FileStorage():
     __file_path = "file.json"
     __objects = {}
 
-    def del_key(self, key):
-        """
-        delete a key from __objects
-        """
-        del self.__objects[key]
-
-    def update_obj(self, id, key, value):
-        """
-        updates/add an object in __objects.
-        """
-        string = value
-        if string.startswith('"') or string.startswith("'"):
-            string = string[1:]
-        if string.endswith('"') or string.endswith("'"):
-            string = string[:-1]
-        setattr(self.__objects[id], str(key), str(string))
-
     def all(self):
         """
         Returns the dictionary __objects
