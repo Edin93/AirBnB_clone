@@ -38,18 +38,6 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
-    def do_quit(self, line):
-        """
-        Quit the command line
-        """
-        return True
-
-    def emptyline(self):
-        """
-        Called when an empty line is entered in response to the prompt.
-        """
-        pass
-
     def do_create(self, line):
         """
         Create an instance of BaseModel
@@ -57,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split()
         if len(args) == 0:
-            print(" ** class name missing ** ")
+            print("** class name missing **")
         elif (HBNBCommand.check_class(args[0])):
             if not issubclass(eval(args[0]), BaseModel):
                 print("** class doesn't exist **")
