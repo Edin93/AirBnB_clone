@@ -4,6 +4,13 @@ serializes/deserializes JSON
 """
 import json
 import sys
+from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class FileStorage():
@@ -47,14 +54,6 @@ class FileStorage():
         """
         try:
             with open(FileStorage.__file_path, mode='r') as f:
-                from models.base_model import BaseModel
-                from models.amenity import Amenity
-                from models.base_model import BaseModel
-                from models.city import City
-                from models.place import Place
-                from models.review import Review
-                from models.state import State
-                from models.user import User
                 r = json.load(f)
                 for k, v in r.items():
                     cls_name = k.split('.')[0]
