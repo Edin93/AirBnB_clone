@@ -13,6 +13,7 @@ from models.review import Review
 from models import storage
 from models.state import State
 from models.user import User
+import sys
 
 
 class HBNBCommand(cmd.Cmd):
@@ -20,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
     Command processor
     """
 
-    prompt = '(hbnb) '
+    prompt = '(hbnb)'
 
     @staticmethod
     def check_class(x):
@@ -37,6 +38,18 @@ class HBNBCommand(cmd.Cmd):
         """
         print("")
         return True
+
+    def do_quit(self, line):
+        """
+        Quit the command line
+        """
+        return True
+
+    def emptyline(self):
+        """
+        Called when an empty line is entered in response to the prompt.
+        """
+        pass
 
     def do_create(self, line):
         """
