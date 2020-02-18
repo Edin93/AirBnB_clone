@@ -164,16 +164,13 @@ class HBNBCommand(cmd.Cmd):
                     if key in objects:
                         if len(args) == 2:
                             print('** attribute name missing **')
-                        elif len(args) == 3:
-                            print('** value missing **')
                         else:
-                            s = args[3]
-                            if s.startswith('"') or s.startswith("'"):
-                                s = s[1:]
-                            if s.endswith('"') or s.endswith("'"):
-                                s = s[:-1]
-                            setattr(objects[key], str(args[2]), str(s))
-                            storage.save()
+                            line2 = line.split('"')
+                            if len(line2) == 1:
+                                print("** value missing **")
+                            else:
+                                setattr(objects[key], str(args[2]), str(line2[1]))
+                                storage.save()
                     else:
                         print("** no instance found **")
         else:
