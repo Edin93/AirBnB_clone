@@ -207,7 +207,6 @@ class HBNBCommand(cmd.Cmd):
                     print('[]')
     """
 if __name__ == '__main__':
-    import sys
     if not sys.stdin.isatty():
         HBNBCommand.doc_header = "\nDocumented commands (type help <topic>):"
 HBNBCommand().cmdloop()
