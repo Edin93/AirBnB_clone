@@ -21,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
     Command processor
     """
 
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
 
     @staticmethod
     def check_class(x):
