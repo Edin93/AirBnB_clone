@@ -187,13 +187,16 @@ class HBNBCommand(cmd.Cmd):
                 for k, v in storage.all().items():
                     if (k.split('.')[0] == cls_name):
                         objs.append(str(v))
-                print('[', end='')
-                for i in range(len(objs)):
-                    print(objs[i], end='')
-                    if i < len(objs) - 1:
-                        print(', ', end='')
-                    else:
-                        print(']')
+                if len(objs) > 0:
+                    print('[', end='')
+                    for i in range(len(objs)):
+                        print(objs[i], end='')
+                        if i < len(objs) - 1:
+                            print(', ', end='')
+                        else:
+                            print(']')
+                else:
+                    print('[]')
 
 if __name__ == '__main__':
     import sys
