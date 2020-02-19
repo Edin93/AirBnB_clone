@@ -179,7 +179,7 @@ class HBNBCommand(cmd.Cmd):
                         print("** no instance found **")
         else:
             print("** class doesn't exist **")
-    """
+
     def default(self, line):
         Called on an input line when the command prefix is not recognized.
         the commands that are handled here are:
@@ -205,6 +205,6 @@ class HBNBCommand(cmd.Cmd):
                             print(']')
                 else:
                     print('[]')
-    """
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
