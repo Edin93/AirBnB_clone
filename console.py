@@ -255,6 +255,25 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
+    @staticmethod
+    def handle_def_update_with_dict(cls_name, id, d):
+        """
+        Handles the <class name>.update(<id>, <dictionary representation>)
+        console function.
+        """
+        objs = storage.all()
+        key = cls_name + '.' + id
+        if key in objs:
+            for k, v in d.items():
+                setattr(
+                    objs[key],
+                    k,
+                    v
+                )
+            storage.save()
+        else:
+            print("** no instance found **")
+
     def default(self, line):
         """
         Called on an input line when the command prefix is not recognized.
@@ -273,16 +292,27 @@ class HBNBCommand(cmd.Cmd):
             else:
                 cmds = re.split('\(|\"|\)', args[1])
                 cmds = list(filter(lambda s: s != '', cmds))
-                print("-------------CMDS-------------")
                 if cmds[0] == 'show':
                     HBNBCommand.handle_def_show(cls_name, cmds[1])
                 elif cmds[0] == 'destroy':
                     HBNBCommand.handle_def_destroy(cls_name, cmds[1])
                 elif cmds[0] == 'update':
+                    cmds = re.split('\(|\"|\)|\{|\'|\}|: |:', args[1])
+                    cmds = list(filter(lambda s: s != '' and s != ' ', cmds))
                     cmds = list(filter(lambda s: s != ', ', cmds))
-                    HBNBCommand.handle_def_update(
-                        cls_name, cmds[1], cmds[2], cmds[3]
-                    )
-
+                    print("-------------CMDS-------------")
+                    print(cmds)
+                    if (len(cmds) == 4):
+                        HBNBCommand.handle_def_update(
+                            cls_name, cmds[1], cmds[2], cmds[3]
+                        )
+                    else:
+                        tab = cmds[2:]
+                        d = {}
+                        for i in range(0, len(tab), 2):
+                            d[tab[i]] = tab[i + 1]
+                        HBNBCommand.handle_def_update_with_dict(
+                            cls_name, cmds[1], d
+                        )
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
