@@ -180,6 +180,26 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    @staticmethod
+    def handle_def_all(line, cls_name):
+        """
+        Handles the <class name>.all() function.
+        """
+        objs = []
+        for k, v in storage.all().items():
+            if (k.split('.')[0] == cls_name):
+                objs.append(str(v))
+        if len(objs) > 0:
+            print('[', end='')
+            for i in range(len(objs)):
+                print(objs[i], end='')
+                if i < len(objs) - 1:
+                    print(', ', end='')
+                else:
+                    print(']')
+        else:
+            print('[]')
+
     def default(self, line):
         """
         Called on an input line when the command prefix is not recognized.
@@ -188,24 +208,11 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split('.')
         cls_name = ""
-        objs = []
         if args[0] is not None:
             cls_name = args[0]
         if args[1] is not None:
             if (args[1] == 'all()'):
-                for k, v in storage.all().items():
-                    if (k.split('.')[0] == cls_name):
-                        objs.append(str(v))
-                if len(objs) > 0:
-                    print('[', end='')
-                    for i in range(len(objs)):
-                        print(objs[i], end='')
-                        if i < len(objs) - 1:
-                            print(', ', end='')
-                        else:
-                            print(']')
-                else:
-                    print('[]')
+                HBNBCommand.handle_def_all(line, cls_name)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
