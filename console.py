@@ -181,10 +181,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def default(self, line):
+        """
         Called on an input line when the command prefix is not recognized.
         the commands that are handled here are:
         <class name>.all()
-
+        """
         args = line.split('.')
         cls_name = ""
         objs = []
