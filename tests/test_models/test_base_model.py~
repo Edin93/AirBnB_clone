@@ -1,0 +1,14 @@
+#!/usr/bin/python3
+'''
+Unittest for BaseModel class.
+'''
+import unittest
+from models.base_model import BaseModel
+
+
+class test_file(unittest.TestCase):
+    """
+    Test BaseModel class.
+    """
+
+    
