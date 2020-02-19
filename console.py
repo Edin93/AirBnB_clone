@@ -183,7 +183,7 @@ class HBNBCommand(cmd.Cmd):
     @staticmethod
     def handle_def_all(line, cls_name):
         """
-        Handles the <class name>.all() function.
+        Handles the default <class name>.all() console function.
         """
         objs = []
         for k, v in storage.all().items():
@@ -200,6 +200,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             print('[]')
 
+    @staticmethod
+    def handle_def_count(line, cls_name):
+        """
+        Handles the default <class name>.count() console function.
+        """
+        count = 0
+        objs = []
+        for k, v in storage.all().items():
+            if (k.split('.')[0] == cls_name):
+                count = count + 1
+        print(count)
+
     def default(self, line):
         """
         Called on an input line when the command prefix is not recognized.
@@ -213,6 +225,8 @@ class HBNBCommand(cmd.Cmd):
         if args[1] is not None:
             if (args[1] == 'all()'):
                 HBNBCommand.handle_def_all(line, cls_name)
+            elif (args[1] == 'count()'):
+                HBNBCommand.handle_def_count(line, cls_name)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
