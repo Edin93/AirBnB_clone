@@ -311,8 +311,6 @@ class HBNBCommand(cmd.Cmd):
                     cmds = re.split('\(|\"|\)|\{|\'|\}|: |:|, ', args[1])
                     cmds = list(filter(lambda s: s != '' and s != ' ', cmds))
                     cmds = list(filter(lambda s: s != ', ', cmds))
-                    print("-------------CMDS-------------")
-                    print(cmds)
                     if (len(cmds) == 4):
                         HBNBCommand.handle_def_update(
                             cls_name, cmds[1], cmds[2], cmds[3]
@@ -325,5 +323,7 @@ class HBNBCommand(cmd.Cmd):
                         HBNBCommand.handle_def_update_with_dict(
                             cls_name, cmds[1], d
                         )
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
