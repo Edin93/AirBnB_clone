@@ -25,6 +25,17 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     @staticmethod
+    def check_str_to_int(c):
+        """
+        Check if a variable is convertible to int or not and returns it.
+        """
+        try:
+            n = int(c)
+            return n
+        except:
+            return c
+
+    @staticmethod
     def check_class(x):
         """Check if x is a class."""
         try:
@@ -249,7 +260,7 @@ class HBNBCommand(cmd.Cmd):
             setattr(
                 objs[key],
                 attr,
-                value
+                HBNBCommand.check_str_to_int(value)
                 )
             storage.save()
         else:
@@ -268,7 +279,7 @@ class HBNBCommand(cmd.Cmd):
                 setattr(
                     objs[key],
                     k,
-                    v
+                    HBNBCommand.check_str_to_int(v)
                 )
             storage.save()
         else:
@@ -297,7 +308,7 @@ class HBNBCommand(cmd.Cmd):
                 elif cmds[0] == 'destroy':
                     HBNBCommand.handle_def_destroy(cls_name, cmds[1])
                 elif cmds[0] == 'update':
-                    cmds = re.split('\(|\"|\)|\{|\'|\}|: |:', args[1])
+                    cmds = re.split('\(|\"|\)|\{|\'|\}|: |:|, ', args[1])
                     cmds = list(filter(lambda s: s != '' and s != ' ', cmds))
                     cmds = list(filter(lambda s: s != ', ', cmds))
                     print("-------------CMDS-------------")
