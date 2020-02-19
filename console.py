@@ -238,6 +238,23 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
+    @staticmethod
+    def handle_def_update(cls_name, id, attr, value):
+        """
+        Handles the default <class name>.destory(<id>) console function.
+        """
+        objs = storage.all()
+        key = cls_name + '.' + id
+        if key in objs:
+            setattr(
+                objs[key],
+                attr,
+                value
+                )
+            storage.save()
+        else:
+            print("** no instance found **")
+
     def default(self, line):
         """
         Called on an input line when the command prefix is not recognized.
@@ -256,10 +273,17 @@ class HBNBCommand(cmd.Cmd):
             else:
                 cmds = re.split('\(|\"|\)', args[1])
                 cmds = list(filter(lambda s: s != '', cmds))
+                print("-------------CMDS-------------")
+                print(cmds)
                 if cmds[0] == 'show':
                     HBNBCommand.handle_def_show(cls_name, cmds[1])
                 elif cmds[0] == 'destroy':
                     HBNBCommand.handle_def_destroy(cls_name, cmds[1])
+                elif cmds[0] == 'update':
+                    cmds = list(filter(lambda s: s != ', ', cmds))
+                    HBNBCommand.handle_def_update(
+                        cls_name, cmds[1], cmds[2], cmd[3]
+                    )
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
