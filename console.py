@@ -274,7 +274,6 @@ class HBNBCommand(cmd.Cmd):
                 cmds = re.split('\(|\"|\)', args[1])
                 cmds = list(filter(lambda s: s != '', cmds))
                 print("-------------CMDS-------------")
-                print(cmds)
                 if cmds[0] == 'show':
                     HBNBCommand.handle_def_show(cls_name, cmds[1])
                 elif cmds[0] == 'destroy':
@@ -282,7 +281,7 @@ class HBNBCommand(cmd.Cmd):
                 elif cmds[0] == 'update':
                     cmds = list(filter(lambda s: s != ', ', cmds))
                     HBNBCommand.handle_def_update(
-                        cls_name, cmds[1], cmds[2], cmd[3]
+                        cls_name, cmds[1], cmds[2], cmds[3]
                     )
 
 if __name__ == '__main__':
