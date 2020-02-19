@@ -13,6 +13,7 @@ from models.review import Review
 from models import storage
 from models.state import State
 from models.user import User
+import re
 import sys
 
 
@@ -212,6 +213,18 @@ class HBNBCommand(cmd.Cmd):
                 count = count + 1
         print(count)
 
+    @staticmethod
+    def handle_def_show(cls_name, id):
+        """
+        Handles the default <class name>.show(<id>) console function.
+        """
+        objs = storage.all()
+        key = cls_name + '.' + id
+        if key in objs:
+            print(objs[key])
+        else:
+            print("** no instance found **")
+
     def default(self, line):
         """
         Called on an input line when the command prefix is not recognized.
@@ -227,6 +240,11 @@ class HBNBCommand(cmd.Cmd):
                 HBNBCommand.handle_def_all(line, cls_name)
             elif (args[1] == 'count()'):
                 HBNBCommand.handle_def_count(line, cls_name)
+            else:
+                cmds = re.split('\(|\"|\)', args[1])
+                cmds = list(filter(lambda s: s != '', cmds))
+                if cmds[0] == 'show':
+                    HBNBCommand.handle_def_show(cls_name, cmds[1])
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
