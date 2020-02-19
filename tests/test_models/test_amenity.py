@@ -17,4 +17,4 @@ class testAmenity(unittest.TestCase):
         Testing instances.
         """
         inst = Amenity()
-        self.assertTrue(issubclass(inst, BaseModel))
+        self.assertTrue(isinstance(inst, Amenity))

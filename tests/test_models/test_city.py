@@ -3,7 +3,7 @@
 Test cases for City class.
 """
 import unittest
-from models.city import city
+from models.city import City
 from models.base_model import BaseModel
 
 
@@ -17,4 +17,4 @@ class testCity(unittest.TestCase):
         Testing instances.
         """
         inst = City()
-        self.assertTrue(issubclass(inst, BaseModel))
+        self.assertTrue(isinstance(inst, City))

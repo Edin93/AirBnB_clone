@@ -16,5 +16,5 @@ class testReview(unittest.TestCase):
         """
         Testing instances.
         """
-        inst = Review()
+        inst = Review
         self.assertTrue(issubclass(inst, BaseModel))

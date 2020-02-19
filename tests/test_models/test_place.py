@@ -17,4 +17,4 @@ class testPlace(unittest.TestCase):
         Testing instances.
         """
         inst = Place()
-        self.assertTrue(issubclass(inst, BaseModel))
+        self.assertTrue(isinstance(inst, Place))

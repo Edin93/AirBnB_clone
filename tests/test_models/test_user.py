@@ -17,4 +17,4 @@ class testUser(unittest.TestCase):
         Testing instances.
         """
         inst = User()
-        self.assertTrue(issubclass(inst, BaseModel))
+        self.assertTrue(isinstance(inst, User))
