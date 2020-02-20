@@ -42,3 +42,20 @@ class test_file(unittest.TestCase):
         msg += "(" + str(bs1.id) + ") "
         msg += str(bs1.__dict__)
         self.assertEqual(print(bs1), print(msg))
+
+        dic = bs1.to_dict()
+        self.assertTrue(hasattr(dic, '__class__'))
+
+        d1 = bs1.updated_at
+        bs1.save()
+        d2 = bs1.updated_at
+        self.assertNotEqual(d1, d2)
+
+        my_model = BaseModel()
+        my_model.name = "Holberton"
+        my_model.my_number = 89
+        my_model_json = my_model.to_dict()
+        for key in my_model_json.keys():
+            self.assertTrue(
+                hasattr(my_model, key)
+                )
