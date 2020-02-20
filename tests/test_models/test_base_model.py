@@ -2,6 +2,7 @@
 """
 Unittest for BaseModel class.
 """
+import models
 from models.base_model import BaseModel
 import datetime
 import unittest
@@ -36,12 +37,18 @@ class test_file(unittest.TestCase):
         self.assertTrue(hasattr(bs1, 'updated_at'))
         self.assertTrue(hasattr(bs1, 'age'))
         self.assertTrue(hasattr(bs1, 'name'))
-        self.assertTrue(hasattr(bs1, '__str__'))
+        self.assertTrue(hasattr(eval(bs1.__class__.__name__), '__str__'))
         dic = bs1.to_dict()
         self.assertTrue(hasattr(dic, '__class__'))
 
         d1 = bs1.updated_at
         bs1.save()
+        objs = models.storage.all()
+        key = 'BaseModel' + '.' + bs1.id
+        if key in objs:
+            r = objs[key].to_dict()
+            for k, v in r.items():
+                self.assertEqual(r[k], bs1.to_dict()[k])
         d2 = bs1.updated_at
         self.assertNotEqual(d1, d2)
 
