@@ -47,6 +47,21 @@ class test_file(unittest.TestCase):
         self.assertTrue(callable(type(bs1.to_dict())))
         self.assertTrue(callable(type(bs1.__str__())))
 
+        s0 = str(bs1)
+        self.assertMultiLineEqual(bs1.__str__(), str(bs1))
+
+        my_dict = {}
+        for k, v in bs1.__dict__.items():
+            if k == 'created_at':
+                my_dict[k] = v.isoformat()
+            elif k == 'updated_at':
+                my_dict[k] = v.isoformat()
+            else:
+                my_dict[k] = v
+            my_dict['__class__'] = bs1.__class__.__name__
+
+        self.assertDictEqual(bs1.to_dict(), my_dict)
+
         d1 = bs1.updated_at
         bs1.save()
         objs = models.storage.all()
