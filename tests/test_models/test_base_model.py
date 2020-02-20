@@ -6,7 +6,8 @@ from models.base_model import BaseModel
 import datetime
 import unittest
 import uuid
-
+import io
+import sys
 
 class test_file(unittest.TestCase):
     """
@@ -36,3 +37,7 @@ class test_file(unittest.TestCase):
         self.assertTrue(hasattr(bs1, 'updated_at'))
         self.assertTrue(hasattr(bs1, 'age'))
         self.assertTrue(hasattr(bs1, 'name'))
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        self.assertEqual(print(bs1), print(capturedOutput))
+        sys.stdout = sys.__stdout__
