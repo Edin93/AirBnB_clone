@@ -37,7 +37,8 @@ class test_file(unittest.TestCase):
         self.assertTrue(hasattr(bs1, 'updated_at'))
         self.assertTrue(hasattr(bs1, 'age'))
         self.assertTrue(hasattr(bs1, 'name'))
-        capturedOutput = io.StringIO()
-        sys.stdout = capturedOutput
-        self.assertEqual(print(bs1), print(capturedOutput))
-        sys.stdout = sys.__stdout__
+        
+        msg = "[" + str(bs1.__class__.__name__) + "] "
+        msg += "(" + str(bs1.id) + ") "
+        msg += str(bs1.__dict__)
+        self.assertEqual(print(bs1), print(msg))
