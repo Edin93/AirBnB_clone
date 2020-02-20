@@ -109,10 +109,10 @@ EOF  all  create  destroy  help  quit  show  update
 $
 ```
 * create <class_name>: to create a data instance.
-* show <class_name> <id>: to print the string representation of an instance.
-* destroy <class_name> <id>: to delete an instance.
+* show <class_name> <instance_id>: to print the string representation of an instance.
+* destroy <class_name> <instance_id>: to delete an instance.
 * all <class_name>: to print all string representation of all the instances based or not on the class name (the <class_name> is optional).
-* update <class_name> <id> <attribute_name> <attribute_value>: to update an existing instance by modifying it's attribute value or by creating a new attribute.
+* update <class_name> <instance_id> <attribute_name> <attribute_value>: to update an existing instance by modifying it's attribute value or by creating a new attribute.
 ###### Here'are some usage examples of these commands:
 ```sh
 $ ./console.py
@@ -174,10 +174,10 @@ b41ba918-71e2-4014-8d7f-b85da9d0c026
 There are more ways to create, update, view... data in the CLI, which are:
 * <class_name>.all(): to retrieve all instances of data based on class_name.
 * <class_name>.count(): to retrieve the number of instances of a class.
-* <class_name>.show(<id>):  to retrieve an instance based on its ID.
-* <class_name>.destroy(<id>): to destroy an instance based on his ID.
-* <class_name>.update(<id>, <attribute_name>, <attribute_value>): to update an instance based on his ID.
-* <class_name>.update(<id>, <dictionary_representation>): to update an instance based on his ID with a dictionary.
+* <class_name>.show(<instance_id>):  to retrieve an instance based on its ID.
+* <class_name>.destroy(<instance_id>): to destroy an instance based on his ID.
+* <class_name>.update(<instance_id>, <attribute_name>, <attribute_value>): to update an instance based on his ID.
+* <class_name>.update(<instance_id>, <dictionary_representation>): to update an instance based on his ID with a dictionary.
 ###### Here'are some usage examples of the previously mentioned functionalities:
 ```sh
 (hbnb) Usage.all()
