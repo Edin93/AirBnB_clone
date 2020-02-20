@@ -44,6 +44,9 @@ class test_file(unittest.TestCase):
         self.assertTrue(hasattr(bs1, 'to_dict'))
         self.assertTrue(hasattr(bs1, '__str__'))
 
+        self.assertTrue(callable(type(bs1.to_dict())))
+        self.assertTrue(callable(type(bs1.__str__())))
+
         d1 = bs1.updated_at
         bs1.save()
         objs = models.storage.all()
