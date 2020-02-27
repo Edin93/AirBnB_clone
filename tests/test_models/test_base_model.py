@@ -81,3 +81,10 @@ class test_file(unittest.TestCase):
             self.assertTrue(
                 hasattr(my_model, key)
                 )
+
+        print('++++++++++++++++ BS1 PRINT +++++++++++++')
+        print(bs1)
+        print('-+++++++++++++++ __STR__ PRINT +++++++++++++')
+        print(bs1.__str__())
+        print(bs1 == bs1.__str__())
+        print('bs1.__str__ length = {}'.format(len(bs1.__str__())))
