@@ -57,6 +57,11 @@
     padding-top: 38px;
     padding-bottom: 38px;
     padding-left: 50px;
+    display: none;
+}
+
+.locations h2 {
+    font-size: 18px;
 }
 
 .locations .popover:first-child {
@@ -69,4 +74,12 @@
 
 .filters ul {
     list-style: none;
+}
+
+.locations:hover > .popover {
+    display: block;
+}
+
+.amenities:hover > .popover {
+    display: block;
 }
