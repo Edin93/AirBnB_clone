@@ -6,6 +6,6 @@ footer {
     text-align: center;
     vertical-align: middle;
     line-height: 60px;
-    position: fixed;
+    position: absolute;
     bottom: 0px;
 }
