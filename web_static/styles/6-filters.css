@@ -58,6 +58,8 @@
     padding-bottom: 38px;
     padding-left: 50px;
     display: none;
+    z-index: 999;
+    position: sticky;
 }
 
 .locations h2 {
@@ -76,10 +78,6 @@
     list-style: none;
 }
 
-.locations:hover > .popover {
-    display: block;
-}
-
-.amenities:hover > .popover {
+.filters > div:hover > .popover {
     display: block;
 }
