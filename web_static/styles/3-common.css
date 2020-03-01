@@ -5,3 +5,13 @@ body {
     font-size: 14px;
     font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto 30px;
+    min-height: calc(100vh - 190px);
+}
