@@ -22,7 +22,7 @@ article {
     border-radius: 4px;
 }
 
-article div:first-child > h2 {
+article h2 {
     font-size: 30px;
     text-align: center;
     margin-top: 0px;
