@@ -7,3 +7,13 @@ footer {
     vertical-align: middle;
     line-height: 60px;
 }
+
+@media screen and (max-width: 480px) {
+    footer {
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 6px;
+    }
+}

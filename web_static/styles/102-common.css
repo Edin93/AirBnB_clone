@@ -20,5 +20,9 @@ body {
     body {
         font-size: 12px;
     }
+
+    .container {
+        margin: 30px 12px 30px 12px;
+    }
 }
 
