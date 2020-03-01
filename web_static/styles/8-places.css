@@ -30,7 +30,7 @@ article > div {
     margin-top: -5px;
 }
 
-article h2 {
+article div:first-child > h2 {
     font-size: 30px;
     text-align: center;
     margin-top: -5px;
@@ -89,6 +89,10 @@ article h2 {
     background-position: center;
     background-repeat: no-repeat;
     height: 50px;
+}
+
+.places .user b {
+    margin-right: 5px;
 }
 
 .description {

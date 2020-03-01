@@ -26,12 +26,12 @@
     opacity: 90%;
 }
 
-.locations, .amenities {
+.locations-list, .amenities-list {
     height: 100%;
     width: 25%;
 }
 
-.locations {
+.locations-list {
     border-right: 1px solid #DDDDDD;
 }
 
@@ -62,11 +62,15 @@
     position: sticky;
 }
 
-.locations h2 {
+.popover ul {
+    padding-left: 20px;
+}
+
+.locations-list h2 {
     font-size: 18px;
 }
 
-.locations .popover:first-child {
+.locations-list .popover:first-child {
     margin-top: 0px;
 }
 
