@@ -85,3 +85,59 @@
 .filters > div:hover > .popover {
     display: block;
 }
+
+@media screen and (max-width: 1000px) {
+    .filters {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .filters button {
+        width: 18%;
+        margin-right: 15px;
+    }
+
+    .locations-list, .amenities-list {
+        width: 225px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .locations-list, .amenities-list {
+        width: 40%;
+    }
+
+    .filters button {
+        margin-right: 8px;
+        width: 16%;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .filters {
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .locations-list, .amenities-list {
+        width: 50%;
+        flex: 1 0 auto;
+        position: relative;
+    }
+
+    .popover {
+        position: absolute;
+        top: 50px;
+        left: 0px;
+    }
+
+    .filters button {
+        width: 90%;
+        margin: 8px auto;
+        font-size: 22px;
+        letter-spacing: 8px;
+    }
+}
