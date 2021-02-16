@@ -1,5 +1,15 @@
-# AirBnB_clone
+# AirBnB_clone - The Console
+
 ##### The HBNB project is an AirBnB cloning that's divided into different smaller projects where in each project we work on a set of technologies to build a specific thing.
+
+## Authors Description
+#### Houssem Eddine Ben Khalifa
+* I'm a software engineering student at Holberton School, with 2 years of experience in Javascript web technologies.
+* I'm mostly confident with JavaScript (MERN Stack) and Python and I'm looking for a full time software engineering job.
+* You can reach me out on:
+	- [Twitter](https://twitter.com/h_edin93)
+	- [LinkedIn](https://www.linkedin.com/in/houssem-eddine-ben-khalifa-b0a2a412b/)
+	- [Email](mailto:il_matador@hotmail.fr)
 
 ## Project Description
 #### The Airbnb project is divided into 7 smaller projects, which are:
@@ -37,7 +47,11 @@
 * JSON to save data, serialize and deserialize it.
 * Unittesting.
 
+## Architecture
+![alt text](https://github.com/Edin93/AirBnB_clone_v3/blob/master/documentation/architecture.png)
+
 ## Installation
+* You need to have python3 installed on your system.
 * Clone the project on your PC
  ```sh
 $ https://github.com/Edin93/AirBnB_clone.git
